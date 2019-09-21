@@ -59,29 +59,42 @@ namespace WebCrawler
                 var html = await httpClient.GetStringAsync(url);
                 var htmlDocument = new HtmlDocument();
                 htmlDocument.LoadHtml(html);
-
-                // a list to add all the list of cars and the various prices 
                 var ips = new List<Ip>();
+
+                var paginacao =
+                htmlDocument.DocumentNode.Descendants("ul")
+                    .Where(node => node.GetAttributeValue("class", "").Equals("pagination")).ToList();
+
+                Int64 totpagina = Convert.ToInt64(paginacao.Select(x => x.Elements("li")).Last().Last().InnerText);
+            
+                for(int i=1;i<= totpagina;i++)
+                {
+                    var urlpag = "https://proxyservers.pro/proxy/list/order/updated/order_dir/desc/page/" + i;
+                    var htmlpag = await httpClient.GetStringAsync(urlpag);
+                    htmlDocument.LoadHtml(htmlpag);
+                
+                
                 var trs =
                 htmlDocument.DocumentNode.Descendants("tr")
                     .Where(node => node.GetAttributeValue("valign", "").Equals("top")).ToList();
 
-                foreach (var tr in trs)
-                {
-                    var ip = new Ip
+                    foreach (var tr in trs)
                     {
+                        var ip = new Ip
+                        {
 
-                        Updated = tr.Descendants("td").FirstOrDefault().InnerText,
-                        Address = tr.Descendants("td").Skip(1).FirstOrDefault().InnerText,
-                        Port = tr.Descendants("td").Skip(2).FirstOrDefault().InnerText,
-                        Country = tr.Descendants("td").Skip(3).FirstOrDefault().InnerText,
-                        Speed = tr.Descendants("td").Skip(4).FirstOrDefault().InnerText,
-                        Online = tr.Descendants("td").Skip(5).FirstOrDefault().InnerText,
-                        Protocol = tr.Descendants("td").Skip(6).FirstOrDefault().InnerText,
-                        Anonymity = tr.Descendants("td").Skip(7).FirstOrDefault().InnerText
-                    };
+                            Updated = tr.Descendants("td").FirstOrDefault().InnerText,
+                            Address = tr.Descendants("td").Skip(1).FirstOrDefault().InnerText,
+                            Port = tr.Descendants("td").Skip(2).FirstOrDefault().InnerText,
+                            Country = tr.Descendants("td").Skip(3).FirstOrDefault().InnerText,
+                            Speed = tr.Descendants("td").Skip(4).FirstOrDefault().InnerText,
+                            Online = tr.Descendants("td").Skip(5).FirstOrDefault().InnerText,
+                            Protocol = tr.Descendants("td").Skip(6).FirstOrDefault().InnerText,
+                            Anonymity = tr.Descendants("td").Skip(7).FirstOrDefault().InnerText
+                        };
 
-                    ips.Add(ip);
+                        ips.Add(ip);
+                    }
                 }
                 string arquivoJson = retornaVetorDeObjetoJSON(ips, ips.Count);
                 System.IO.File.WriteAllText(@"C:\IpsJson.json", arquivoJson);
