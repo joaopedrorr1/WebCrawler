@@ -71,18 +71,14 @@ namespace WebCrawler
                     var ip = new Ip
                     {
 
-                        //Address = tr.Descendants("a").FirstOrDefault().ChildAttributes("title").FirstOrDefault().Value,
-                        //Port = tr.Descendants("span").FirstOrDefault().InnerText,
-                        //Country = tr.Descendants("img").FirstOrDefault().InnerText,
-                        //Protocol = tr.Descendants("td").FirstOrDefault().InnerText
-                        Updated = tr.Descendants("a").FirstOrDefault().InnerText,
-                        Address = tr.Descendants("a").FirstOrDefault().InnerText,
-                        Port = tr.Descendants("td").FirstOrDefault().InnerText,
-                        Country = tr.Descendants("td").FirstOrDefault().InnerText,
-                        Speed = tr.Descendants("td").FirstOrDefault().InnerText,
-                        Online = tr.Descendants("td").FirstOrDefault().InnerText,
-                        Protocol = tr.Descendants("td").FirstOrDefault().InnerText,
-                        Anonymity = tr.Descendants("td").FirstOrDefault().InnerText
+                        Updated = tr.Descendants("td").FirstOrDefault().InnerText,
+                        Address = tr.Descendants("td").Skip(1).FirstOrDefault().InnerText,
+                        Port = tr.Descendants("td").Skip(2).FirstOrDefault().InnerText,
+                        Country = tr.Descendants("td").Skip(3).FirstOrDefault().InnerText,
+                        Speed = tr.Descendants("td").Skip(4).FirstOrDefault().InnerText,
+                        Online = tr.Descendants("td").Skip(5).FirstOrDefault().InnerText,
+                        Protocol = tr.Descendants("td").Skip(6).FirstOrDefault().InnerText,
+                        Anonymity = tr.Descendants("td").Skip(7).FirstOrDefault().InnerText
                     };
 
                     ips.Add(ip);
