@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -12,7 +12,7 @@ namespace WebCrawler
     {
         static void Main(string[] args)
         {
-            inicarCrawler();
+            inicarCrawler(); //chamada do método que inicia o processo
             Console.ReadLine();
         }
 
@@ -31,13 +31,13 @@ namespace WebCrawler
                 var html = await httpClient.GetStringAsync(url);
                 var htmlDocument = new HtmlDocument();
                 htmlDocument.LoadHtml(html);
-                var ips = new List<Ip>();
+                var ips = new List<Ip>();//criando lista de Ips
 
                 var paginacao =
                 htmlDocument.DocumentNode.Descendants("ul")
                     .Where(node => node.GetAttributeValue("class", "").Equals("pagination")).ToList();
 
-                Int64 totpagina = Convert.ToInt64(paginacao.Select(x => x.Elements("li")).Last().Last().InnerText);
+                Int64 totpagina = Convert.ToInt64(paginacao.Select(x => x.Elements("li")).Last().Last().InnerText);//total de pag da paginação
             
                 for(int i=1;i<= totpagina;i++)
                 {
@@ -50,7 +50,7 @@ namespace WebCrawler
                 htmlDocument.DocumentNode.Descendants("tr")
                     .Where(node => node.GetAttributeValue("valign", "").Equals("top")).ToList();
 
-                    foreach (var tr in trs)
+                    foreach (var tr in trs)//capturar os dados do site
                     {
                         var ip = new Ip
                         {
@@ -60,11 +60,11 @@ namespace WebCrawler
                             Protocol = tr.Descendants("td").Skip(6).FirstOrDefault().InnerText,
                         };
 
-                        ips.Add(ip);
+                        ips.Add(ip);//adcionando ips a lista de Ips
                     }
                 }
-                string arquivoJson = retornaVetorDeObjetoJSON(ips);
-                System.IO.File.WriteAllText(@"C:\IpsJson.json", arquivoJson);
+                string arquivoJson = retornaVetorDeObjetoJSON(ips);//método que recebe um array de objetos Ips e devolve no formato JSON
+                System.IO.File.WriteAllText(@"C:\IpsJson.json", arquivoJson); //persistência do retorno do metodo retornaVetorDeObjetoJSON em arquivo .JSON
                 Console.WriteLine("Sucesso....");
                 Console.WriteLine("Precione Enter para continuar...");
                 ConsoleKeyInfo keyinfor = Console.ReadKey(true);
