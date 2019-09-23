@@ -1,0 +1,13 @@
+C:\Users\joao.rodrigues\Downloads\WebCrawler-master\WebCrawler-master\WebCrawler\obj\Debug\WebCrawler.csprojAssemblyReference.cache
+C:\Users\joao.rodrigues\Downloads\WebCrawler-master\WebCrawler-master\WebCrawler\obj\Debug\WebCrawler.csproj.CoreCompileInputs.cache
+C:\Users\joao.rodrigues\Downloads\WebCrawler-master\WebCrawler-master\WebCrawler\bin\Debug\WebCrawler.exe.config
+C:\Users\joao.rodrigues\Downloads\WebCrawler-master\WebCrawler-master\WebCrawler\bin\Debug\WebCrawler.exe
+C:\Users\joao.rodrigues\Downloads\WebCrawler-master\WebCrawler-master\WebCrawler\bin\Debug\WebCrawler.pdb
+C:\Users\joao.rodrigues\Downloads\WebCrawler-master\WebCrawler-master\WebCrawler\bin\Debug\HtmlAgilityPack.dll
+C:\Users\joao.rodrigues\Downloads\WebCrawler-master\WebCrawler-master\WebCrawler\bin\Debug\Newtonsoft.Json.dll
+C:\Users\joao.rodrigues\Downloads\WebCrawler-master\WebCrawler-master\WebCrawler\bin\Debug\HtmlAgilityPack.pdb
+C:\Users\joao.rodrigues\Downloads\WebCrawler-master\WebCrawler-master\WebCrawler\bin\Debug\HtmlAgilityPack.xml
+C:\Users\joao.rodrigues\Downloads\WebCrawler-master\WebCrawler-master\WebCrawler\bin\Debug\Newtonsoft.Json.xml
+C:\Users\joao.rodrigues\Downloads\WebCrawler-master\WebCrawler-master\WebCrawler\obj\Debug\WebCrawler.csproj.CopyComplete
+C:\Users\joao.rodrigues\Downloads\WebCrawler-master\WebCrawler-master\WebCrawler\obj\Debug\WebCrawler.exe
+C:\Users\joao.rodrigues\Downloads\WebCrawler-master\WebCrawler-master\WebCrawler\obj\Debug\WebCrawler.pdb
